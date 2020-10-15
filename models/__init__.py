@@ -1,1 +1,1 @@
-from models.gae import GAE
+from models.vae import VAE

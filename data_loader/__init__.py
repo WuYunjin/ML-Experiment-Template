@@ -1,1 +1,1 @@
-from data_loader.synthetic_dataset import SyntheticDataset
+from data_loader.real_dataset import RealDataset

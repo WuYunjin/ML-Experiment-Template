@@ -1,5 +1,58 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import torch
+
+def sample_vae(model, z_dim, device, num_samples=50):
+    with torch.no_grad():
+        samples = torch.sigmoid(model.decoder(torch.randn(num_samples, z_dim).to(device)))
+        samples = samples.view(num_samples, 28,28).cpu().numpy()
+    return samples
+
+def plot_samples(samples, h=5, w=10):
+    fig, axes = plt.subplots(nrows=h,
+                             ncols=w,
+                             figsize=(int(1.4 * w), int(1.4 * h)),
+                             subplot_kw={'xticks': [], 'yticks': []})
+    for i, ax in enumerate(axes.flatten()):
+        ax.imshow(samples[i], cmap='gray')
+
+    plt.show()
+
+
+def plot_reconstructions(model, dataset, device):
+    with torch.no_grad():
+        batch = (dataset.test_loader_mnist.dataset.data[:25].float() / 255.)
+        batch = batch.view(-1, 28*28).to(device)
+        _, rec = model.loss(batch)
+        rec = torch.sigmoid(rec)
+        rec = rec.view(-1, 28, 28).cpu().numpy()
+        batch = batch.view(-1, 28, 28).cpu().numpy()
+    
+        fig, axes = plt.subplots(nrows=5, ncols=10, figsize=(14, 7),
+                                 subplot_kw={'xticks': [], 'yticks': []})
+        for i in range(25):
+            axes[i % 5, 2 * (i // 5)].imshow(batch[i], cmap='gray')
+            axes[i % 5, 2 * (i // 5) + 1].imshow(rec[i], cmap='gray')
+
+        plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 def count_accuracy(W_true, W_est, W_und=None):

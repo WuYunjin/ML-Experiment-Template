@@ -1,1 +1,1 @@
-from trainers.al_trainer import ALTrainer
+from trainers.trainer import Trainer
