@@ -60,8 +60,8 @@ def count_accuracy(W_true, W_est, W_und=None):
     Compute FDR, TPR, and FPR for B, or optionally for CPDAG B + B_und.
 
     Args:
-        W_true: ground truth graph
-        W_est: predicted graph
+        W_true: ground truth graph, W_true[i,j] means i->j.
+        W_est: predicted graph, W_est[i,j] means i->j.
         W_und: predicted undirected edges in CPDAG, asymmetric
 
     Returns in dict:
