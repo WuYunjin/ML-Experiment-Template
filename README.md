@@ -6,6 +6,8 @@
 
 创建模板的意义在于，不同工作之间有很多可以复用的代码，因此套用模板可以节省很多时间，可以更加专注于模型和实验分析。
 
+目前以经典的 VAE 模型作为例子对代码结构进行了梳理，可以按需自由更改。
+
 ## 感谢
 本模板参考自 华为诺亚实验室开源出来的[一份代码](https://github.com/huawei-noah/trustworthyAI/tree/master/Causal_Structure_Learning/GAE_Causal_Structure_Learning)，觉得整体格式非常清晰值得学习，故整理了这套模板作为写模型跑实验的一个代码模板。
 
@@ -18,6 +20,7 @@
 │  README.md
 │
 ├─data_loader
+|      real_dataset.py 
 │      synthetic_dataset.py
 │      __init__.py
 │
@@ -30,12 +33,12 @@
 │      torch_utils.py
 │
 ├─models
-│      gae.py
+│      vae.py
 │      __init__.py
 │
 ├─output
 └─trainers
-        al_trainer.py
+        trainer.py
         __init__.py
 ```
 
@@ -79,6 +82,10 @@
 - synthetic_dataset.py
   
     定义一个类，用于生成数据。方便调用
+
+- real_dataset.py
+  
+    定义一个类，用于真实数据。方便调用
 
 (3) models
 
